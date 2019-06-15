@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="internet_required">No Internet connection</string>
+    <string name="publish_date">Published at: \u0020</string>
+    <string name="share_article">Please check this article</string>
+    <string name="main_title">Top headlines in USA</string>
+    <string name="error">Oops! something went wrong</string>
+    <string name="reload">Reload</string>
+
+</resources>
