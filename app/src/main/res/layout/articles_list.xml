@@ -3,33 +3,32 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         android:orientation="vertical"
 >
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-    android:orientation="horizontal"
+            android:orientation="horizontal"
     >
-    <ImageView
-            android:id="@+id/img_article"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
+        <ImageView
+                android:id="@+id/img_article"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dp"
+        />
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="2"
+                android:textColor="@android:color/black"
 
-    />
-    <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:textColor="@android:color/black"
-
-    />
+        />
     </LinearLayout>
-      <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:padding="5dp"
-                    android:background="@android:color/darker_gray" />
-  </LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+</LinearLayout>
