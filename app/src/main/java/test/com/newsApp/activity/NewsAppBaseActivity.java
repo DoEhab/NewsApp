@@ -1,7 +1,9 @@
 package test.com.newsApp.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import test.com.newsApp.R;
 import test.com.newsApp.broadcastReceiver.NetworkBroadcastReceiver;
+import test.com.newsApp.utils.AppDataHolder;
 import test.com.newsApp.utils.ConnectivityHelper;
 
 
@@ -30,8 +33,9 @@ public class NewsAppBaseActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this, R.style.ProgressDialogTheme);
         progressDialog.setCancelable(false);
 
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        AppDataHolder.getInstance().setConnectedToInternet(cm.getActiveNetworkInfo() != null);
     }
-
 
     protected void showProgressDialog() {
         if(progressDialog != null && !progressDialog.isShowing()) {
@@ -88,9 +92,11 @@ public class NewsAppBaseActivity extends AppCompatActivity {
             if (isConnected && snackbar.isShown()) {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 snackbar.dismiss();
+                AppDataHolder.getInstance().setConnectedToInternet(true);
             } else if (!isConnected) {
                 //To make the screen not touchable
                // getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                AppDataHolder.getInstance().setConnectedToInternet(false);
                 snackbar.show();
             }
         }

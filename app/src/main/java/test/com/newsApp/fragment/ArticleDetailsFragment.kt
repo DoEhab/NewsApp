@@ -10,17 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.assist.ImageSize
+import com.nostra13.universalimageloader.utils.MemoryCacheUtils
 import kotlinx.android.synthetic.main.fragment_article_details.*
 import test.com.newsApp.NewsApp
 import test.com.newsApp.R
 import test.com.newsApp.model.Article
+import test.com.newsApp.utils.AppDataHolder
 import test.com.newsApp.utils.Constants
-import test.com.newsApp.utils.Utils
 import javax.inject.Inject
-
-
+import android.net.Uri
 /**
- * A simple [Fragment] subclass.
+ * A simple fragment that receives article object and use it to view the content and date of the article
  *
  */
 class ArticleDetailsFragment : NewsAppBaseFragment() {
@@ -49,8 +49,16 @@ class ArticleDetailsFragment : NewsAppBaseFragment() {
         val application = activity?.application as NewsApp
         application.getComponent().inject(this)
         hideToolbarWithBackBtn()
-        imageLoader.displayImage(articleDetails.urlToImage, img_article
-        )
+        if(AppDataHolder.getInstance().connectedToInternet)
+        imageLoader.displayImage(articleDetails.urlToImage, img_article)
+        else
+        {
+            val file = imageLoader.diskCache.get(articleDetails.urlToImage);
+            //Load image from cache
+            img_article.setImageURI(Uri.parse(file.absolutePath))
+        }
+
+
         tv_bar_title.text=articleDetails.source.name
         tv_article_date.append(articleDetails.publishedAt.substringBefore("T"))
         tv_article_title.text=articleDetails.title

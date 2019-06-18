@@ -14,6 +14,7 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import dagger.Module;
 import dagger.Provides;
 import test.com.newsApp.dataLayer.impl.DataLayerModule;
+import test.com.newsApp.utils.PreferenceHelper;
 import test.com.newsApp.viewModel.impl.ViewModelModule;
 
 import javax.inject.Singleton;
@@ -22,21 +23,27 @@ import javax.inject.Singleton;
 @Module(includes = {DataLayerModule.class, ViewModelModule.class})
 
 public class AppModule {
-        private Application app;
+    private Application app;
 
-        AppModule(Application app) {
-            this.app = app;
-        }
-
-        @Singleton
-        @Provides
-        Context providesContext() {
-            return app;
-        }
+    AppModule(Application app) {
+        this.app = app;
+    }
 
     @Singleton
     @Provides
-    ImageLoader providesImageLoader(Context context){
+    PreferenceHelper providesHelper() {
+        return new PreferenceHelper(app);
+    }
+
+    @Singleton
+    @Provides
+    Context providesContext() {
+        return app;
+    }
+
+    @Singleton
+    @Provides
+    ImageLoader providesImageLoader(Context context) {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
                 .memoryCacheExtraOptions(480, 800)
                 .diskCacheExtraOptions(480, 800, null)
@@ -55,5 +62,5 @@ public class AppModule {
         ImageLoader.getInstance().init(config);
         return ImageLoader.getInstance();
     }
-    }
+}
 

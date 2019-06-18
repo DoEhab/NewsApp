@@ -9,5 +9,6 @@
     <string name="main_title">Top headlines in USA</string>
     <string name="error">Oops! something went wrong</string>
     <string name="reload">Reload</string>
+    <string name="article_img_description">The article image is loaded from the image url in this view</string>
 
 </resources>

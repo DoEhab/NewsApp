@@ -3,6 +3,7 @@ package test.com.newsApp.broadcastReceiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import test.com.newsApp.utils.AppDataHolder;
 import test.com.newsApp.utils.ConnectivityHelper;
 
 public class NetworkBroadcastReceiver extends BroadcastReceiver {

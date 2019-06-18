@@ -3,11 +3,14 @@ package test.com.newsApp
 import android.app.Application
 import android.content.Context
 import android.support.v7.app.AppCompatDelegate
+import test.com.newsApp.utils.PreferenceHelper
+import javax.inject.Inject
 
 
 class NewsApp: Application() {
 
-
+    @Inject
+    lateinit var preferenceHelper: PreferenceHelper
     companion object {
         init {
             AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
