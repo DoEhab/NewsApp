@@ -19,6 +19,8 @@ import test.com.newsApp.utils.AppDataHolder
 import test.com.newsApp.utils.Constants
 import javax.inject.Inject
 import android.net.Uri
+import test.com.newsApp.R.id.*
+
 /**
  * A simple fragment that receives article object and use it to view the content and date of the article
  *
